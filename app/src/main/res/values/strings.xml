@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Crisol</string>
+    <string name="home">Libros</string>
+    <string name="favorite">Lista de deseos</string>
+    <string name="account">Mi cuenta</string>
+</resources>
