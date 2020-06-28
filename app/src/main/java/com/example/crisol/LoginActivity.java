@@ -38,8 +38,6 @@ public class LoginActivity extends AppCompatActivity {
 
         // btnLogin
         mAuth = FirebaseAuth.getInstance();
-        // Access a Cloud Firestore instance from your Activity
-        FirebaseFirestore db = FirebaseFirestore.getInstance();
         Button btnLogin = findViewById(R.id.btnLogin);
 
         btnLogin.setOnClickListener(new View.OnClickListener() {
@@ -52,7 +50,7 @@ public class LoginActivity extends AppCompatActivity {
                 String email = etemail.getText().toString().trim();
                 String password = etpassword.getText().toString().trim();
 
-                mAuth.createUserWithEmailAndPassword(email, password)
+                mAuth.signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
