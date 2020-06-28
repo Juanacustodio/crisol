@@ -8,4 +8,6 @@
     <string name="email">Correo</string>
     <string name="password">Contraseña</string>
     <string name="createAccount">Crear cuenta</string>
+    <string name="name">Nombre</string>
+    <string name="lastname">Apellido</string>
 </resources>
