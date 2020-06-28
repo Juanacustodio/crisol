@@ -14,10 +14,8 @@ import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.firestore.FirebaseFirestore;
 
-public class LoginActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
 
     private FirebaseAuth mAuth;
 
@@ -40,30 +38,27 @@ public class LoginActivity extends AppCompatActivity {
         mAuth = FirebaseAuth.getInstance();
         Button btnLogin = findViewById(R.id.btnLogin);
 
-        btnLogin.setOnClickListener(new View.OnClickListener() {
+        btnLogin.setOnClickListener(this);
+    }
 
-            @Override
-            public void onClick(View v) {
-                TextInputEditText etemail = findViewById(R.id.etEmail);
-                TextInputEditText etpassword = findViewById(R.id.etPassword);
+    @Override
+    public void onClick(View v) {
+        TextInputEditText etemail = findViewById(R.id.etEmail);
+        TextInputEditText etpassword = findViewById(R.id.etPassword);
 
-                String email = etemail.getText().toString().trim();
-                String password = etpassword.getText().toString().trim();
+        String email = etemail.getText().toString().trim();
+        String password = etpassword.getText().toString().trim();
 
-                mAuth.signInWithEmailAndPassword(email, password)
-                        .addOnCompleteListener(LoginActivity.this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()) {
-                                    // Sign in success, update UI with the signed-in user's information
-                                    FirebaseUser user = mAuth.getCurrentUser();
-                                    startActivity(new Intent(LoginActivity.this, MainActivity.class));
-                                } else {
-                                    Toast.makeText(LoginActivity.this, "Correo y contraseña incorrectos.", Toast.LENGTH_SHORT).show();
-                                }
-                            }
-                        });
-            }
-        });
+        mAuth.signInWithEmailAndPassword(email, password)
+            .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                @Override
+                public void onComplete(@NonNull Task<AuthResult> task) {
+                    if (task.isSuccessful()) {
+                        startActivity(new Intent(LoginActivity.this, MainActivity.class));
+                    } else {
+                        Toast.makeText(LoginActivity.this, "Correo y contraseña incorrectos.", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
     }
 }
