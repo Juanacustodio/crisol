@@ -1,12 +1,30 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/default_color_background">
+    android:background="@color/default_color_background"
+    android:orientation="vertical"
+    android:padding="16px"
+    android:gravity="center">
 
+    <ImageView
+        android:layout_width="180dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_favorite_black_24dp"
+        android:scaleType="fitCenter"
+        android:tint="@color/colorPrimary"
+        android:adjustViewBounds="true" />
     <TextView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="favorite"/>
+        android:layout_height="wrap_content"
+        android:textSize="32dp"
+        android:textAlignment="center"
+        android:text="@string/favoriteRequireRegister" />
 
-</RelativeLayout>
+    <Button
+        android:id="@+id/containedButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/login" />
+
+</LinearLayout>

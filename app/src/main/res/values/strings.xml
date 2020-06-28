@@ -3,4 +3,6 @@
     <string name="home">Libros</string>
     <string name="favorite">Lista de deseos</string>
     <string name="account">Mi cuenta</string>
+    <string name="favoriteRequireRegister">Ingresa a tu cuenta y cuéntanos cuales son tu libros favoritos.</string>
+    <string name="login">Iniciar sesión</string>
 </resources>
