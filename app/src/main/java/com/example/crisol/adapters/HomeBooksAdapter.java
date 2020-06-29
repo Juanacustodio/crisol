@@ -1,6 +1,7 @@
 package com.example.crisol.adapters;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -8,8 +9,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.crisol.BookDetailActivity;
 import com.example.crisol.R;
 import com.example.crisol.model.Book;
 import com.squareup.picasso.Picasso;
@@ -35,11 +38,21 @@ public class HomeBooksAdapter extends RecyclerView.Adapter<HomeBooksAdapter.View
 
     @Override
     public void onBindViewHolder(@NonNull HomeBooksAdapter.ViewHolder holder, int position) {
-        Book item = lista.get(position);
+        final Book item = lista.get(position);
         holder.tvTitle.setText(item.getTitle());
         holder.tvAuthor.setText(item.getAuthorId());
         // Utilizando la librería Picasso
         Picasso.get().load(item.getImage()).into(holder.ivImage);
+
+        holder.cvcontenedor.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intDetalleAndroid = new Intent(context,
+                        BookDetailActivity.class);
+                intDetalleAndroid.putExtra("bookId", item.getId());
+                context.startActivity(intDetalleAndroid);
+            }
+        });
     }
 
     public void agregarelementos(ArrayList<Book> data){
@@ -56,12 +69,14 @@ public class HomeBooksAdapter extends RecyclerView.Adapter<HomeBooksAdapter.View
     public class ViewHolder extends RecyclerView.ViewHolder {
         ImageView ivImage;
         TextView tvTitle, tvAuthor;
+        CardView cvcontenedor;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             ivImage = itemView.findViewById(R.id.ivImage);
             tvTitle = itemView.findViewById(R.id.tvTitle);
             tvAuthor = itemView.findViewById(R.id.tvAuthor);
+            cvcontenedor = itemView.findViewById(R.id.cvcontenedor);
         }
     }
 }
