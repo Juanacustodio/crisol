@@ -47,10 +47,10 @@ public class HomeBooksAdapter extends RecyclerView.Adapter<HomeBooksAdapter.View
         holder.cvcontenedor.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intDetalleAndroid = new Intent(context,
+                Intent intBook = new Intent(context,
                         BookDetailActivity.class);
-                intDetalleAndroid.putExtra("bookId", item.getId());
-                context.startActivity(intDetalleAndroid);
+                intBook.putExtra("book", item);
+                context.startActivity(intBook);
             }
         });
     }
