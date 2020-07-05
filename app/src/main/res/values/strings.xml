@@ -12,4 +12,6 @@
     <string name="lastname">Apellido</string>
     <string name="register">Crear Cuenta</string>
     <string name="deliveryInfo">Información de envío</string>
+    <string name="detail">Detalle</string>
+    <string name="comments">Opiniones</string>
 </resources>
