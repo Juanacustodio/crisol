@@ -1,6 +1,9 @@
 package com.example.crisol.model;
 
-public class Book {
+import android.os.Parcel;
+import android.os.Parcelable;
+
+public class Book implements Parcelable {
     String id, title, summary, authorId, image;
     double price;
 
@@ -12,6 +15,27 @@ public class Book {
         this.image = image;
         this.price = price;
     }
+
+    protected Book(Parcel in) {
+        id = in.readString();
+        title = in.readString();
+        summary = in.readString();
+        authorId = in.readString();
+        image = in.readString();
+        price = in.readDouble();
+    }
+
+    public static final Creator<Book> CREATOR = new Creator<Book>() {
+        @Override
+        public Book createFromParcel(Parcel in) {
+            return new Book(in);
+        }
+
+        @Override
+        public Book[] newArray(int size) {
+            return new Book[size];
+        }
+    };
 
     public String getId() {
         return id;
@@ -59,5 +83,20 @@ public class Book {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(id);
+        dest.writeString(title);
+        dest.writeString(summary);
+        dest.writeString(authorId);
+        dest.writeString(image);
+        dest.writeDouble(price);
     }
 }
