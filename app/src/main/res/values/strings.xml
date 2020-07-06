@@ -14,4 +14,5 @@
     <string name="deliveryInfo">Información de envío</string>
     <string name="detail">Detalle</string>
     <string name="comments">Opiniones</string>
+    <string name="search">Buscar</string>
 </resources>
