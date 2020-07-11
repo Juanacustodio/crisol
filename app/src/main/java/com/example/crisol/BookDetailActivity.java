@@ -86,8 +86,7 @@ public class BookDetailActivity extends AppCompatActivity {
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.topfavorite:
-                        item.setIcon(R.drawable.ic_favorite_black_24dp);
-                        addFavoriteBook();
+                        addOrDeleteFavoriteBook(item);
                         return true;
 
                     default:
@@ -97,8 +96,9 @@ public class BookDetailActivity extends AppCompatActivity {
         });
     }
 
-    private void addFavoriteBook()
+    private void addOrDeleteFavoriteBook(MenuItem item)
     {
+
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
 
@@ -108,6 +108,9 @@ public class BookDetailActivity extends AppCompatActivity {
         // Access a Cloud Firestore instance from your Activity
         db = FirebaseFirestore.getInstance();
 
+        // add or delete
+        final Drawable iconFav = ContextCompat.getDrawable(BookDetailActivity.this, R.drawable.ic_favorite_black_24dp);
+        final Drawable iconNoFav = ContextCompat.getDrawable(BookDetailActivity.this, R.drawable.ic_favorite_border_black_24dp);
         if (currentUser != null) {
             db.collection("user")
                     .whereEqualTo("id", currentUser.getUid())
@@ -118,22 +121,47 @@ public class BookDetailActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 for (QueryDocumentSnapshot document : task.getResult()) {
                                     User user = document.toObject(User.class);
-                                    user.setFavoriteBook(book.getId());
+                                    if (!user.getFavoriteBooks().contains(book.getId())) {
+                                        ActionMenuItemView menu = findViewById(R.id.topfavorite);
+                                        menu.setIcon(iconFav);
 
-                                    db.collection("user").document(document.getId())
-                                            .set(user)
-                                            .addOnSuccessListener(new OnSuccessListener<Void>() {
-                                                @Override
-                                                public void onSuccess(Void aVoid) {
-                                                    Toast.makeText(BookDetailActivity.this, "Marcado como favorito.", Toast.LENGTH_SHORT).show();
-                                                }
-                                            })
-                                            .addOnFailureListener(new OnFailureListener() {
-                                                @Override
-                                                public void onFailure(@NonNull Exception e) {
-                                                    Toast.makeText(BookDetailActivity.this, "Error al agregar favorito.", Toast.LENGTH_SHORT).show();
-                                                }
-                                            });
+                                        user.setFavoriteBook(book.getId());
+
+                                        db.collection("user").document(document.getId())
+                                                .set(user)
+                                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                    @Override
+                                                    public void onSuccess(Void aVoid) {
+                                                        Toast.makeText(BookDetailActivity.this, "Marcado como favorito.", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                })
+                                                .addOnFailureListener(new OnFailureListener() {
+                                                    @Override
+                                                    public void onFailure(@NonNull Exception e) {
+                                                        Toast.makeText(BookDetailActivity.this, "Error al agregar favorito.", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                });
+                                    } else {
+                                        ActionMenuItemView menu = findViewById(R.id.topfavorite);
+                                        menu.setIcon(iconNoFav);
+
+                                        user.deleteFavoriteBook(book.getId());
+
+                                        db.collection("user").document(document.getId())
+                                                .set(user)
+                                                .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                                    @Override
+                                                    public void onSuccess(Void aVoid) {
+                                                        Toast.makeText(BookDetailActivity.this, "Eliminado de favoritos.", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                })
+                                                .addOnFailureListener(new OnFailureListener() {
+                                                    @Override
+                                                    public void onFailure(@NonNull Exception e) {
+                                                        Toast.makeText(BookDetailActivity.this, "Error al eliminar favorito.", Toast.LENGTH_SHORT).show();
+                                                    }
+                                                });
+                                    }
                                 }
                             }
                         }

@@ -70,4 +70,13 @@ public class User {
         }
         this.favoriteBooks.add(bookId);
     }
+
+    public void deleteFavoriteBook(String bookId) {
+        if (this.favoriteBooks == null) {
+            this.favoriteBooks = new ArrayList<String>();
+        }
+        if (this.favoriteBooks.contains(bookId)) {
+            this.favoriteBooks.remove(bookId);
+        }
+    }
 }
