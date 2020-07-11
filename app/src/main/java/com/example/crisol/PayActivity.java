@@ -29,6 +29,19 @@ public class PayActivity extends AppCompatActivity {
             Picasso.get().load(book.getImage()).into(ivImage);
             tvTitle.setText(book.getTitle());
             tvAuthor.setText(book.getAuthorId());
+
+            // btnPay
+            Button btnPay = findViewById(R.id.btnPay);
+            btnPay.setText("Pagar " + book.getPrice());
+            btnPay.setOnClickListener(new View.OnClickListener() {
+
+                @Override
+                public void onClick(View v) {
+                    Intent intConfirm = new Intent(PayActivity.this, ConfirmActivity.class);
+                    intConfirm.putExtra("book", book);
+                    startActivity(intConfirm);
+                }
+            });
         }
     }
 }

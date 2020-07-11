@@ -21,4 +21,7 @@
     <string name="cardNumber">Número de tarjeta</string>
     <string name="cardCVC">CVC</string>
     <string name="cardExpDate">Fecha de exp.</string>
+    <string name="confirmationText">En breve recibirás un correo de confirmación con los detalles de tu pedido y envío. Gracias por comprar en Crisol.</string>
+    <string name="seeBook">Ver libro</string>
+    <string name="goHome">Ir al inicio</string>
 </resources>
