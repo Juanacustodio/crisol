@@ -1,7 +1,19 @@
 package com.example.crisol.model;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class User {
     String id, name, lastname, email;
+    List<String> favoriteBooks;
+
+    public User(String id, String name, String lastname, String email, List<String> favoriteBooks) {
+        this.id = id;
+        this.name = name;
+        this.lastname = lastname;
+        this.email = email;
+        this.favoriteBooks = favoriteBooks;
+    }
 
     public User(String id, String name, String lastname, String email) {
         this.id = id;
@@ -9,6 +21,8 @@ public class User {
         this.lastname = lastname;
         this.email = email;
     }
+
+    public User() {}
 
     public String getId() {
         return id;
@@ -40,5 +54,20 @@ public class User {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<String> getFavoriteBooks() {
+        return favoriteBooks;
+    }
+
+    public void setFavoriteBooks(List<String> favoriteBooks) {
+        this.favoriteBooks = favoriteBooks;
+    }
+
+    public void setFavoriteBook(String bookId) {
+        if (this.favoriteBooks == null) {
+            this.favoriteBooks = new ArrayList<String>();
+        }
+        this.favoriteBooks.add(bookId);
     }
 }
