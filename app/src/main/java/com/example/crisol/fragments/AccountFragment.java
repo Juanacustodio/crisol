@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -55,6 +56,15 @@ public class AccountFragment extends Fragment {
         else {
             userview.setVisibility(LinearLayout.GONE);
         }
+
+        // signOut button
+        Button signOut = root.findViewById(R.id.signOut);
+        signOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FirebaseAuth.getInstance().signOut();
+            }
+        });
 
 
         return root;
