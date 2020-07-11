@@ -62,12 +62,22 @@ public class BookDetailActivity extends AppCompatActivity {
             btnBuy.setText("Comprar por " + book.getPrice());
             tvSummary.setText(book.getSummary());
 
+            // Initialize Firebase Auth
+            mAuth = FirebaseAuth.getInstance();
+
+            // Check if user is signed in (non-null) and update UI accordingly.
+            final FirebaseUser currentUser = mAuth.getCurrentUser();
+
             btnBuy.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    Intent intPay = new Intent(BookDetailActivity.this, PayActivity.class);
-                    intPay.putExtra("book", book);
-                    startActivity(intPay);
+                    if (currentUser != null) {
+                        Intent intPay = new Intent(BookDetailActivity.this, PayActivity.class);
+                        intPay.putExtra("book", book);
+                        startActivity(intPay);
+                    } else {
+                        startActivity(new Intent(BookDetailActivity.this, LoginActivity.class));
+                    }
                 }
             });
         }
