@@ -71,6 +71,8 @@
                 android:text="@string/seeBook"
                 android:backgroundTint="@color/white"
                 android:textColor="@color/colorAccent"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
                 android:layout_marginTop="32dp"
                 android:layout_marginBottom="16dp"/>
             <Button
@@ -78,6 +80,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="@string/goHome"
+                android:paddingTop="16dp"
+                android:paddingBottom="16dp"
                 android:backgroundTint="@color/colorAccent" />
 
         </LinearLayout>
