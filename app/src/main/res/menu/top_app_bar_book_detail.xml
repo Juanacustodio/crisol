@@ -9,4 +9,11 @@
         android:iconTint="@color/colorPrimary"
         app:showAsAction="ifRoom" />
 
+    <item
+        android:id="@+id/topfavorite"
+        android:icon="@drawable/ic_favorite_border_black_24dp"
+        android:title="@string/search"
+        android:iconTint="@color/colorPrimary"
+        app:showAsAction="ifRoom" />
+
 </menu>

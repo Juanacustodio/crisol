@@ -15,4 +15,5 @@
     <string name="detail">Detalle</string>
     <string name="comments">Opiniones</string>
     <string name="search">Buscar</string>
+    <string name="signOut">Cerrar sesión</string>
 </resources>

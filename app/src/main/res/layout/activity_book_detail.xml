@@ -6,6 +6,26 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".BookDetailActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/topBar"
+        app:liftOnScroll="true" >
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/topAppBar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            app:title=""
+            app:menu="@menu/top_app_bar_book_detail"
+            app:navigationIcon="@drawable/ic_arrow_back_black_24dp"
+            style="@style/ToolBar"
+            app:layout_scrollFlags="scroll|enterAlways|snap"
+            />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
     <ScrollView
         android:id="@+id/scrollyear"
         android:layout_width="fill_parent"
