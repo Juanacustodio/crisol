@@ -16,4 +16,9 @@
     <string name="comments">Opiniones</string>
     <string name="search">Buscar</string>
     <string name="signOut">Cerrar sesión</string>
+    <string name="personalInfo">Información personal</string>
+    <string name="payment">Pago</string>
+    <string name="cardNumber">Número de tarjeta</string>
+    <string name="cardCVC">CVC</string>
+    <string name="cardExpDate">Fecha de exp.</string>
 </resources>
