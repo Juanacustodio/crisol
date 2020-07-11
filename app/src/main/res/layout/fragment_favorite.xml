@@ -4,15 +4,15 @@
     android:layout_height="match_parent"
     android:background="@color/default_color_background"
     android:orientation="vertical"
-    android:padding="16px"
-    android:gravity="center">
+    android:padding="16px">
 
     <LinearLayout
         android:id="@+id/guestview"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:paddingLeft="16dp"
         android:paddingRight="16dp"
+        android:gravity="center"
         android:orientation="vertical">
 
         <ImageView
