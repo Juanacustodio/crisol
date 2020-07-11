@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.example.crisol.model.Book;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.appbar.MaterialToolbar;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.firestore.FirebaseFirestore;
@@ -37,6 +38,15 @@ public class PayActivity extends AppCompatActivity {
 
         final TextView tvUserName = findViewById(R.id.userName);
         final TextView tvUserEmail = findViewById(R.id.userEmail);
+
+        // toolbar
+        MaterialToolbar topAppBar = findViewById(R.id.topAppBar);
+        topAppBar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         // Initialize Firebase Auth
         mAuth = FirebaseAuth.getInstance();
