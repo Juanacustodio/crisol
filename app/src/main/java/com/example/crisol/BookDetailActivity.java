@@ -33,6 +33,7 @@ import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class BookDetailActivity extends AppCompatActivity {
@@ -131,6 +132,9 @@ public class BookDetailActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 for (QueryDocumentSnapshot document : task.getResult()) {
                                     User user = document.toObject(User.class);
+                                    if (user.getFavoriteBooks() == null) {
+                                        user.setFavoriteBooks(new ArrayList<String>());
+                                    }
                                     if (!user.getFavoriteBooks().contains(book.getId())) {
                                         ActionMenuItemView menu = findViewById(R.id.topfavorite);
                                         menu.setIcon(iconFav);
@@ -203,6 +207,9 @@ public class BookDetailActivity extends AppCompatActivity {
                                 for (QueryDocumentSnapshot document : task.getResult()) {
                                     User user = document.toObject(User.class);
                                     List<String> favorites = user.getFavoriteBooks();
+                                    if (favorites == null) {
+                                        break;
+                                    }
                                     if (!favorites.isEmpty()) {
                                         for (String fav : favorites) {
                                             if (fav.equals(book.getId())) {

@@ -100,6 +100,9 @@ public class FavoriteFragment extends Fragment {
                             for (QueryDocumentSnapshot document : task.getResult()) {
                                 User user = document.toObject(User.class);
                                 List<String> favorites = user.getFavoriteBooks();
+                                if (favorites == null) {
+                                    break;
+                                }
                                 for (String favId : favorites) {
                                     db.collection("book").document(favId)
                                             .get()
